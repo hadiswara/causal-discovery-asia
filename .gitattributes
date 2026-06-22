@@ -1,0 +1,9 @@
+# Abaikan folder data bnlearn dari statistik bahasa GitHub
+**/bnlearn_data/** linguist-vendored
+
+# Abaikan semua file dokumentasi HTML, PDF, dan DOCX
+*.html linguist-documentation
+*.pdf linguist-documentation
+*.docx linguist-documentation
+*.pptx linguist-documentation
+**/output/** linguist-documentation
