@@ -1,0 +1,172 @@
+---
+title: "hailfinder_description"
+output: html_document
+date: '2022-08-02'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### The HailFinder weather forecast system (synthetic) data set
+
+## Description
+
+Hailfinder is a Bayesian network designed to forecast severe summer hail in northeastern Colorado.
+
+## Usage
+```{r}
+  library(bnlearn)
+  data(hailfinder)
+```
+
+## Format
+
+The hailfinder data set contains the following 56 variables:
+
+    N07muVerMo (10.7mu vertical motion): a four-level factor with levels StrongUp, WeakUp, Neutral and Down.
+
+    SubjVertMo (subjective judgment of vertical motion): a four-level factor with levels StrongUp, WeakUp, Neutral and Down.
+
+    QGVertMotion (quasigeostrophic vertical motion): a four-level factor with levels StrongUp, WeakUp, Neutral and Down.
+
+    CombVerMo (combined vertical motion): a four-level factor with levels StrongUp, WeakUp, Neutral and Down.
+
+    AreaMesoALS (area of meso-alpha): a four-level factor with levels StrongUp, WeakUp, Neutral and Down.
+
+    SatContMoist (satellite contribution to moisture): a four-level factor with levels VeryWet, Wet, Neutral and Dry.
+
+    RaoContMoist (reading at the forecast center for moisture): a four-level factor with levels VeryWet, Wet, Neutral and Dry.
+
+    CombMoisture (combined moisture): a four-level factor with levels VeryWet, Wet, Neutral and Dry.
+
+    AreaMoDryAir (area of moisture and adry air): a four-level factor with levels VeryWet, Wet, Neutral and Dry.
+
+    VISCloudCov (visible cloud cover): a three-level factor with levels Cloudy, PC and Clear.
+
+    IRCloudCover (infrared cloud cover): a three-level factor with levels Cloudy, PC and Clear.
+
+    CombClouds (combined cloud cover): a three-level factor with levels Cloudy, PC and Clear.
+
+    CldShadeOth (cloud shading, other): a three-level factor with levels Cloudy, PC and Clear.
+
+    AMInstabMt (AM instability in the mountains): a three-level factor with levels None, Weak and Strong.
+
+    InsInMt (instability in the mountains): a three-level factor with levels None, Weak and Strong.
+
+    WndHodograph (wind hodograph): a four-level factor with levels DCVZFavor, StrongWest, Westerly and Other.
+
+    OutflowFrMt (outflow from mountains): a three-level factor with levels None, Weak and Strong.
+
+    MorningBound (morning boundaries): a three-level factor with levels None, Weak and Strong.
+
+    Boundaries (boundaries): a three-level factor with levels None, Weak and Strong.
+
+    CldShadeConv (cloud shading, convection): a three-level factor with levels None, Some and Marked.
+
+    CompPlFcst (composite plains forecast): a three-level factor with levels IncCapDecIns, LittleChange and DecCapIncIns.
+
+    CapChange (capping change): a three-level factor with levels Decreasing, LittleChange and Increasing.
+
+    LoLevMoistAd (low-level moisture advection): a four-level factor with levels StrongPos, WeakPos, Neutral and Negative.
+
+    InsChange (instability change): three-level factor with levels Decreasing, LittleChange and Increasing.
+
+    MountainFcst (mountains (region 1) forecast): a three-level factor with levels XNIL, SIG and SVR.
+
+    Date (date): a six-level factor with levels May15_Jun14, Jun15_Jul1, Jul2_Jul15, Jul16_Aug10, Aug11_Aug20 and Aug20_Sep15.
+
+    Scenario (scenario): an eleven-level factor with levels A, B, C, D, E, F, G, H, I, J and K.
+
+    ScenRelAMCIN (scenario relevant to AM convective inhibition): a two-level factor with levels AB and CThruK.
+
+    MorningCIN (morning convective inhibition): a four-level factor with levels None, PartInhibit, Stifling and TotalInhibit.
+
+    AMCINInScen (AM convective inhibition in scenario): a three-level factor with levels LessThanAve, Average and MoreThanAve.
+
+    CapInScen (capping withing scenario): a three-level factor with levels LessThanAve, Average and MoreThanAve.
+
+    ScenRelAMIns (scenario relevant to AM instability): a six-level factor with levels ABI, CDEJ, F, G, H and K.
+
+    LIfr12ZDENSd (LI from 12Z DEN sounding): a four-level factor with levels LIGt0, N1GtLIGt_4, N5GtLIGt_8 and LILt_8.
+
+    AMDewptCalPl (AM dewpoint calculations, plains): a three-level factor with levels Instability, Neutral and Stability.
+
+    AMInsWliScen (AM instability within scenario): a three-level factor with levels LessUnstable, Average and MoreUnstable.
+
+    InsSclInScen (instability scaling within scenario): a three-level factor with levels LessUnstable, Average and MoreUnstable.
+
+    ScenRel34 (scenario relevant to regions 2/3/4): a five-level factor with levels ACEFK, B, D, GJ and HI.
+
+    LatestCIN (latest convective inhibition): a four-level factor with levels None, PartInhibit, Stifling and TotalInhibit.
+
+    LLIW (LLIW severe weather index): a four-level factor with levels Unfavorable, Weak, Moderate and Strong.
+
+    CurPropConv (current propensity to convection): a four-level factor with levels None, Slight, Moderate and Strong.
+
+    ScnRelPlFcst (scenario relevant to plains forecast): an eleven-level factor with levels A, B, C, D, E, F, G, H, I, J and K.
+
+    PlainsFcst (plains forecast): a three-level factor with levels XNIL, SIG and SVR.
+
+    N34StarFcst (regions 2/3/4 forecast): a three-level factor with levels XNIL, SIG and SVR.
+
+    R5Fcst (region 5 forecast): a three-level factor with levels XNIL, SIG and SVR.
+
+    Dewpoints (dewpoints): a seven-level factor with levels LowEverywhere, LowAtStation, LowSHighN, LowNHighS, LowMtsHighPl, HighEverywher, Other.
+
+    LowLLapse (low-level lapse rate): a four-level factor with levels CloseToDryAd, Steep, ModerateOrLe and Stable.
+
+    MeanRH (mean relative humidity): a three-level factor with levels VeryMoist, Average and Dry.
+
+    MidLLapse (mid-level lapse rate): a three-level factor with levels CloseToDryAd, Steep and ModerateOrLe.
+
+    MvmtFeatures (movement of features): a four-level factor with levels StrongFront, MarkedUpper, OtherRapid and NoMajor.
+
+    RHRatio (realtive humidity ratio): a three-level factor with levels MoistMDryL, DryMMoistL and other.
+
+    SfcWndShfDis (surface wind shifts and discontinuities): a seven-level factor with levels DenvCyclone, E_W_N, E_W_S, MovigFtorOt, DryLine, None and Other.
+
+    SynForcng (synoptic forcing): a five-level factor with levels SigNegative, NegToPos, SigPositive, PosToNeg and LittleChange.
+
+    TempDis (temperature discontinuities): a four-level factor with levels QStationary, Moving, None, Other.
+
+    WindAloft (wind aloft): a four-level factor with levels LV, SWQuad, NWQuad, AllElse.
+
+    WindFieldMt (wind fields, mountains): a two-level factor with levels Westerly and LVorOther.
+
+    WindFieldPln (wind fields, plains): a six-level factor with levels LV, DenvCyclone, LongAnticyc, E_NE, SEquad and WidespdDnsl.
+
+## Note
+
+The complete BN can be downloaded from https://www.bnlearn.com/bnrepository/.
+
+## Source
+
+Abramson B, Brown J, Edwards W, Murphy A, Winkler RL (1996). "Hailfinder: A Bayesian system for forecasting severe weather". International Journal of Forecasting, 12(1):57–71.
+
+## Examples
+```{r}
+# load the data.
+data(hailfinder)
+# create and plot the network structure.
+modelstring = paste0("[N07muVerMo][SubjVertMo][QGVertMotion][SatContMoist][RaoContMoist]",
+  "[VISCloudCov][IRCloudCover][AMInstabMt][WndHodograph][MorningBound][LoLevMoistAd][Date]",
+  "[MorningCIN][LIfr12ZDENSd][AMDewptCalPl][LatestCIN][LLIW]",
+  "[CombVerMo|N07muVerMo:SubjVertMo:QGVertMotion][CombMoisture|SatContMoist:RaoContMoist]",
+  "[CombClouds|VISCloudCov:IRCloudCover][Scenario|Date][CurPropConv|LatestCIN:LLIW]",
+  "[AreaMesoALS|CombVerMo][ScenRelAMCIN|Scenario][ScenRelAMIns|Scenario][ScenRel34|Scenario]",
+  "[ScnRelPlFcst|Scenario][Dewpoints|Scenario][LowLLapse|Scenario][MeanRH|Scenario]",
+  "[MidLLapse|Scenario][MvmtFeatures|Scenario][RHRatio|Scenario][SfcWndShfDis|Scenario]",
+  "[SynForcng|Scenario][TempDis|Scenario][WindAloft|Scenario][WindFieldMt|Scenario]",
+  "[WindFieldPln|Scenario][AreaMoDryAir|AreaMesoALS:CombMoisture]",
+  "[AMCINInScen|ScenRelAMCIN:MorningCIN][AMInsWliScen|ScenRelAMIns:LIfr12ZDENSd:AMDewptCalPl]",
+  "[CldShadeOth|AreaMesoALS:AreaMoDryAir:CombClouds][InsInMt|CldShadeOth:AMInstabMt]",
+  "[OutflowFrMt|InsInMt:WndHodograph][CldShadeConv|InsInMt:WndHodograph][MountainFcst|InsInMt]",
+  "[Boundaries|WndHodograph:OutflowFrMt:MorningBound][N34StarFcst|ScenRel34:PlainsFcst]",
+  "[CompPlFcst|AreaMesoALS:CldShadeOth:Boundaries:CldShadeConv][CapChange|CompPlFcst]",
+  "[InsChange|CompPlFcst:LoLevMoistAd][CapInScen|CapChange:AMCINInScen]",
+  "[InsSclInScen|InsChange:AMInsWliScen][R5Fcst|MountainFcst:N34StarFcst]",
+  "[PlainsFcst|CapInScen:InsSclInScen:CurPropConv:ScnRelPlFcst]")
+dag = model2network(modelstring)
+## Not run: graphviz.plot(dag, shape = "ellipse")
+```

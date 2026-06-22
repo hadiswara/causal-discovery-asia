@@ -1,0 +1,125 @@
+---
+title: "alarm_description"
+output: html_document
+date: '2022-08-02'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Dataset description
+
+**ALARM monitoring system (synthetic) data set**
+
+
+### Description
+
+The **ALARM** ("A Logical Alarm Reduction Mechanism") is a Bayesian network designed to provide an alarm message system for patient monitoring.
+
+### Usage in R
+
+**data(alarm)**
+
+### Format
+
+The alarm data set contains the following 37 variables:
+
+    CVP (central venous pressure): a three-level factor with levels LOW, NORMAL and HIGH.
+
+    PCWP (pulmonary capillary wedge pressure): a three-level factor with levels LOW, NORMAL and HIGH.
+
+    HIST (history): a two-level factor with levels TRUE and FALSE.
+
+    TPR (total peripheral resistance): a three-level factor with levels LOW, NORMAL and HIGH.
+
+    BP (blood pressure): a three-level factor with levels LOW, NORMAL and HIGH.
+
+    CO (cardiac output): a three-level factor with levels LOW, NORMAL and HIGH.
+
+    HRBP (heart rate / blood pressure): a three-level factor with levels LOW, NORMAL and HIGH.
+
+    HREK (heart rate measured by an EKG monitor): a three-level factor with levels LOW, NORMAL and HIGH.
+
+    HRSA (heart rate / oxygen saturation): a three-level factor with levels LOW, NORMAL and HIGH.
+
+    PAP (pulmonary artery pressure): a three-level factor with levels LOW, NORMAL and HIGH.
+
+    SAO2 (arterial oxygen saturation): a three-level factor with levels LOW, NORMAL and HIGH.
+
+    FIO2 (fraction of inspired oxygen): a two-level factor with levels LOW and NORMAL.
+
+    PRSS (breathing pressure): a four-level factor with levels ZERO, LOW, NORMAL and HIGH.
+
+    ECO2 (expelled CO2): a four-level factor with levels ZERO, LOW, NORMAL and HIGH.
+
+    MINV (minimum volume): a four-level factor with levels ZERO, LOW, NORMAL and HIGH.
+
+    MVS (minimum volume set): a three-level factor with levels LOW, NORMAL and HIGH.
+
+    HYP (hypovolemia): a two-level factor with levels TRUE and FALSE.
+
+    LVF (left ventricular failure): a two-level factor with levels TRUE and FALSE.
+
+    APL (anaphylaxis): a two-level factor with levels TRUE and FALSE.
+
+    ANES (insufficient anesthesia/analgesia): a two-level factor with levels TRUE and FALSE.
+
+    PMB (pulmonary embolus): a two-level factor with levels TRUE and FALSE.
+
+    INT (intubation): a three-level factor with levels NORMAL, ESOPHAGEAL and ONESIDED.
+
+    KINK (kinked tube): a two-level factor with levels TRUE and FALSE.
+
+    DISC (disconnection): a two-level factor with levels TRUE and FALSE.
+
+    LVV (left ventricular end-diastolic volume): a three-level factor with levels LOW, NORMAL and HIGH.
+
+    STKV (stroke volume): a three-level factor with levels LOW, NORMAL and HIGH.
+
+    CCHL (catecholamine): a two-level factor with levels NORMAL and HIGH.
+
+    ERLO (error low output): a two-level factor with levels TRUE and FALSE.
+
+    HR (heart rate): a three-level factor with levels LOW, NORMAL and HIGH.
+
+    ERCA (electrocauter): a two-level factor with levels TRUE and FALSE.
+
+    SHNT (shunt): a two-level factor with levels NORMAL and HIGH.
+
+    PVS (pulmonary venous oxygen saturation): a three-level factor with levels LOW, NORMAL and HIGH.
+
+    ACO2 (arterial CO2): a three-level factor with levels LOW, NORMAL and HIGH.
+
+    VALV (pulmonary alveoli ventilation): a four-level factor with levels ZERO, LOW, NORMAL and HIGH.
+
+    VLNG (lung ventilation): a four-level factor with levels ZERO, LOW, NORMAL and HIGH.
+
+    VTUB (ventilation tube): a four-level factor with levels ZERO, LOW, NORMAL and HIGH.
+
+    VMCH (ventilation machine): a four-level factor with levels ZERO, LOW, NORMAL and HIGH.
+    
+### Source
+
+Beinlich I, Suermondt HJ, Chavez RM, Cooper GF (1989). "The ALARM Monitoring System: A Case Study with Two Probabilistic Inference Techniques for Belief Networks". Proceedings of the 2nd European Conference on Artificial Intelligence in Medicine, 247–256.
+
+### Examples
+
+
+```{r}
+library(bnlearn)
+data(alarm)
+# create and plot the network structure.
+modelstring = paste0("[HIST|LVF][CVP|LVV][PCWP|LVV][HYP][LVV|HYP:LVF][LVF]",
+  "[STKV|HYP:LVF][ERLO][HRBP|ERLO:HR][HREK|ERCA:HR][ERCA][HRSA|ERCA:HR][ANES]",
+  "[APL][TPR|APL][ECO2|ACO2:VLNG][KINK][MINV|INT:VLNG][FIO2][PVS|FIO2:VALV]",
+  "[SAO2|PVS:SHNT][PAP|PMB][PMB][SHNT|INT:PMB][INT][PRSS|INT:KINK:VTUB][DISC]",
+  "[MVS][VMCH|MVS][VTUB|DISC:VMCH][VLNG|INT:KINK:VTUB][VALV|INT:VLNG]",
+  "[ACO2|VALV][CCHL|ACO2:ANES:SAO2:TPR][HR|CCHL][CO|HR:STKV][BP|CO:TPR]")
+dag = model2network(modelstring)
+```
+
+
+
+
+
