@@ -1,0 +1,66 @@
+---
+title: "coronary_description"
+output: html_document
+date: '2022-08-02'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Coronary heart disease data set
+
+## Description
+
+Probable risk factors for coronary thrombosis, comprising data from 1841 men.
+
+## Usage
+```{r}
+library(bnlearn)
+data(coronary)
+```
+
+## Format
+
+The coronary data set contains the following 6 variables:
+
+    Smoking (smoking): a two-level factor with levels no and yes.
+
+    M. Work (strenuous mental work): a two-level factor with levels no and yes.
+
+    P. Work (strenuous physical work): a two-level factor with levels no and yes.
+
+    Pressure (systolic blood pressure): a two-level factor with levels <140 and >140.
+
+    Proteins (ratio of beta and alpha lipoproteins): a two-level factor with levels <3 and >3.
+
+    Family (family anamnesis of coronary heart disease): a two-level factor with levels neg and pos.
+
+## Source
+
+Edwards DI (2000). Introduction to Graphical Modelling. Springer, 2nd edition.
+
+Reinis Z, Pokorny J, Basika V, Tiserova J, Gorican K, Horakova D, Stuchlikova E, Havranek T, Hrabovsky F (1981). "Prognostic Significance of the Risk Profile in the Prevention of Coronary Heart Disease". Bratisl Lek Listy, 76:137–150. Published on Bratislava Medical Journal, in Czech.
+
+Whittaker J (1990). Graphical Models in Applied Multivariate Statistics. Wiley.
+Examples
+
+
+```{r}
+# This is the undirected graphical model from Whittaker (1990).
+data(coronary)
+ug = empty.graph(names(coronary))
+arcs(ug, check.cycles = FALSE) = matrix(
+  c("Family", "M. Work", "M. Work", "Family",
+    "M. Work", "P. Work", "P. Work", "M. Work",
+    "M. Work", "Proteins", "Proteins", "M. Work",
+    "M. Work", "Smoking", "Smoking", "M. Work",
+    "P. Work", "Smoking", "Smoking", "P. Work",
+    "P. Work", "Proteins", "Proteins", "P. Work",
+    "Smoking", "Proteins", "Proteins", "Smoking",
+    "Smoking", "Pressure", "Pressure", "Smoking",
+    "Pressure", "Proteins", "Proteins", "Pressure"),
+  ncol = 2, byrow = TRUE,
+  dimnames = list(c(), c("from", "to")))
+## Not run: graphviz.plot(ug, shape = "ellipse")
+```
